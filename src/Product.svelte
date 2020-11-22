@@ -1,0 +1,49 @@
+<script>
+  import Filter from "./FilterLabel.svelte";
+  import Ruido from "./RuidoLabel.svelte";
+  import CADR from "./CADRLabel.svelte";
+  import NumDevices from "./NumDevicesLabel.svelte";
+  export let product = {};
+  export let needCADR = 450;
+  $: numDevices = Math.ceil(needCADR / product.CADR);
+</script>
+
+<div class="flex bg-white shadow rounded-lg overflow-hidden">
+  <div class="pt-4 pl-4">
+    <iframe
+      style="width:120px;height:240px;"
+      marginwidth="0"
+      marginheight="0"
+      scrolling="no"
+      frameborder="0"
+      title={product.name}
+      src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=hepa07-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins={product.ASIN}&bc1=ffffff&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr" />
+  </div>
+  <div class="flex-1 p-4">
+    <h1 class="text-gray-900 font-bold text-lg mb-4">{product.name}</h1>
+    <p class="my-3 text-gray-600 text-sm">
+      Filtro
+      <Filter filter={product.filter} />
+    </p>
+    <p class="my-3 text-gray-600 text-sm">
+      Ruido
+      <Ruido ruido={product.db} />
+    </p>
+    <p class="my-3 text-gray-600 text-sm">
+      CADR
+      <CADR CADR={product.CADR} {needCADR} />
+    </p>
+    <p class="my-3 text-gray-600 text-sm">
+      Dispositivos necesarios
+      <NumDevices {numDevices} />
+    </p>
+
+    <!-- <div class="flex item-center justify-between mt-3">
+        <button
+          class="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase
+          rounded">
+          Add to Card
+        </button>
+      </div> -->
+  </div>
+</div>

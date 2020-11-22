@@ -70,11 +70,14 @@
 
     if (vent >= 3) {
       const lDoor = l - 220;
-      const frontWindows = Math.round(lDoor / 145);
-      const frontWindowGap = (lDoor - frontWindows * 110) / (frontWindows + 1);
+      const frontWindows = Math.round(lDoor / 155);
+      const frontWindowGap = Math.max(
+        0,
+        (lDoor - frontWindows * 110) / (frontWindows + 1)
+      );
       console.log({ frontWindows, frontWindowGap });
       for (let i = 0; i < frontWindows; i++) {
-        ww(i * (110 + frontWindowGap) + frontWindowGap, 0, iso, win);
+        ww(i * (110 + frontWindowGap) + frontWindowGap + wallSize, 0, iso, win);
       }
     }
   }
