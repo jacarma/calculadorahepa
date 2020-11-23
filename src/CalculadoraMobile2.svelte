@@ -1,7 +1,6 @@
 <script>
   import RangeSlider from "svelte-range-slider-pips";
   import Room from "./Room.svelte";
-  import Meters from "./Meters.svelte";
   import WindowInfo from "./WindowInfo.svelte";
 
   const MAX_W = 1200;
@@ -10,9 +9,9 @@
   const vLabels = ["mala", "baja", "normal", "buena", "excelente"];
   const vRen = [0.5, 1, 1.5, 3, 4];
 
-  let ww = 6;
-  let ll = 9;
-  let hh = 2.8;
+  let ws = [600];
+  let ls = [900];
+  let hs = [280];
 
   let vs = [0];
 
@@ -22,9 +21,9 @@
   export let vent;
   export let needCADR;
 
-  $: w = ww * 100;
-  $: l = ll * 100;
-  $: h = hh * 100;
+  $: w = ws[0];
+  $: l = ls[0];
+  $: h = hs[0];
   $: vent = vs[0];
   $: needCADR = Math.round(
     (5 - vRen[vent]) * (l / 100) * (w / 100) * (h / 100)
@@ -38,17 +37,54 @@
     <h1 class="text-center text-xl p-2 shadow">Calculadora de filtros HEPA</h1>
   </div>
 
-  <Meters bind:value={ll} label="Largo" />
-  <Meters bind:value={ww} label="Ancho" />
+  <div class="ml-3 pt-3">largo {l / 100} m</div>
+  <div>
+    <RangeSlider
+      bind:values={ls}
+      step={10}
+      min={0}
+      max={MAX_L}
+      range="min"
+      pips
+      all="label"
+      formatter={v => (('' + v).endsWith('50') ? '' : v / 100)}
+      pipstep={5} />
+  </div>
+
+  <div class="ml-3 pt-3">ancho {w / 100} m</div>
+  <div>
+    <RangeSlider
+      bind:values={ws}
+      step={10}
+      min={0}
+      max={MAX_W}
+      range="min"
+      pips
+      all="label"
+      formatter={v => (('' + v).endsWith('50') ? '' : v / 100)}
+      pipstep={5} />
+  </div>
 
   <div style="height: 80vw">
     <Room {l} {w} {h} {vent} />
   </div>
 
-  <Meters bind:value={hh} label="Alto" />
+  <div class="ml-3 pt-3">alto {h / 100} m</div>
+  <div>
+    <RangeSlider
+      bind:values={hs}
+      step={10}
+      min={0}
+      max={MAX_H}
+      range="min"
+      pips
+      all="label"
+      formatter={v => (('' + v).endsWith('50') ? '' : v / 100)}
+      pipstep={5} />
+  </div>
 
   <div class="ml-3 pt-3">
-    Ventilación existente {vRen[vent]} CAH
+    Ventilación existente {vRen[vent]} renovaciones/h
     <button
       type="button"
       class=" rounded-full bg-blue-500 text-white font-bold w-6 h-6 ml-3 shadow
