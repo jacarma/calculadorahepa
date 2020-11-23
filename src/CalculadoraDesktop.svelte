@@ -1,6 +1,7 @@
 <script>
   import RangeSlider from "svelte-range-slider-pips";
   import Room from "./Room.svelte";
+  import WindowInfo from "./WindowInfo.svelte";
 
   const MAX_W = 1200;
   const MAX_L = 1200;
@@ -11,8 +12,8 @@
   let ws = [MAX_W - 600];
   let ls = [900];
   let hs = [MAX_H - 280];
-
   let vs = [0];
+  let windowInfo = false;
 
   export let w;
   export let l;
@@ -64,9 +65,18 @@
         <Room {l} {w} {h} {vent} />
       </div>
     </div>
-    <div class="absolute top-0 left-0 ml-4 mt-4 w-1/3">
+    <div class="absolute top-0 left-0 ml-4 mt-4 w-1/3 z-10">
 
-      <div class="ml-3">Ventilación existente</div>
+      <div class="ml-3">
+        Ventilación existente
+        <button
+          type="button"
+          class=" rounded-full bg-blue-500 text-white font-bold w-6 h-6 ml-3
+          shadow hover:bg-blue-400"
+          on:click={() => (windowInfo = true)}>
+          i
+        </button>
+      </div>
       <RangeSlider
         bind:values={vs}
         step={1}
@@ -76,11 +86,16 @@
         all="label"
         formatter={v => vLabels[v]} />
       <div class="ml-3">{vRen[vent]} renovaciones por hora</div>
+      {#if windowInfo}
+        <div class=" p-6 bg-white rounded shadow z-10" style="width: 150%">
+          <WindowInfo on:close={() => (windowInfo = false)} />
+        </div>
+      {/if}
 
     </div>
     <div class="absolute top-0 right-0 mt-4 mr-4 w-1/3 text-right">
       <div>volumen: {l / 100} * {w / 100} * {h / 100} m³</div>
-      <div>ventilación: {vLabels[vent]} {vRen[vent]} RPH</div>
+      <div>ventilación: {vLabels[vent]} {vRen[vent]} ACH</div>
       <div class="text-xl text-purple-700">CADR necesario: {needCADR} m³/h</div>
       <div>
         <a href="#filtros" class="text-blue-600 underline">ver filtros</a>

@@ -24,9 +24,13 @@
     if (!canvas) return;
     canvas.width = cW * 2;
     canvas.height = cH * 2;
-    const scale = (Math.min(cW, cH) * 2) / (w + l);
+    const scale = (Math.min(cW, cH) * 2.3) / (w + l);
     // console.log(scale)
-    var iso = new Isomer(canvas, { scale });
+    var iso = new Isomer(canvas, {
+      scale,
+      originX: cW - ((l - w) * scale) / 2,
+      originY: cH * 2
+    });
     iso.canvas.clear();
     var red = new Color(160, 60, 50);
     var trans = new Color(200, 200, 200, 0.1);
@@ -50,7 +54,7 @@
     const ventP = Math.max(0, 2 - vent);
     const backWindows = Math.round(l / (135 + ventP * 90));
     const backWindowGap = (l - backWindows * 110) / (backWindows + 1);
-    console.log({ backWindows, backWindowGap });
+    // console.log({ backWindows, backWindowGap });
     for (let i = 0; i < backWindows; i++) {
       ww(i * (110 + backWindowGap) + backWindowGap, width - wallSize, iso, win);
     }
@@ -75,7 +79,7 @@
         0,
         (lDoor - frontWindows * 110) / (frontWindows + 1)
       );
-      console.log({ frontWindows, frontWindowGap });
+      // console.log({ frontWindows, frontWindowGap });
       for (let i = 0; i < frontWindows; i++) {
         ww(i * (110 + frontWindowGap) + frontWindowGap + wallSize, 0, iso, win);
       }

@@ -3,6 +3,7 @@
   import CalculadoraDesktop from "./CalculadoraDesktop.svelte";
   import CalculadoraMobile from "./CalculadoraMobile.svelte";
   import RangeSlider from "svelte-range-slider-pips";
+  import { onMount } from "svelte";
 
   const MAX_W = 1200;
   const MAX_L = 1200;
@@ -67,6 +68,13 @@
       ASIN: "B08155YBQH"
     }
   ];
+
+  function size() {
+    mobile =
+      window.innerHeight >= window.innerWidth || window.innerHeight <= 640;
+  }
+
+  onMount(size);
 </script>
 
 <style>
@@ -81,10 +89,7 @@
   }
 </style>
 
-<svelte:window
-  on:resize={e => {
-    mobile = e.target.innerHeight >= e.target.innerWidth || e.target.innerHeight <= 640;
-  }} />
+<svelte:window on:resize={size} />
 
 {#if mobile}
   <CalculadoraMobile bind:l bind:w bind:h bind:vent bind:needCADR />

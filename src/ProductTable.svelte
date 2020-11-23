@@ -2,19 +2,28 @@
   import Product from "./Product.svelte";
   export let needCADR;
   export let products = [1, 2, 3];
+
+  let hideCADR = false;
+  let showNoHEPA = true;
 </script>
 
 <div class="bg-white my-4 " id="filtros">
   <div class="lg:mx-auto lg:container p-2 xl:p-8" id="filtros">
     <h1 class="text-3xl lg:text-4xl">Purificadores de aire</h1>
-    <div class="-mm-2">
-      <label class="text-gray-700 cursor-pointer m-2 whitespace-no-wrap">
-        Ocultar por CADR
-        <input type="checkbox" class="form-checkbox" />
+    <div class="-mx-4 mt-4">
+      <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">
+        Ocultar CADR bajo
+        <input
+          type="checkbox"
+          class="form-checkbox w-5 h-5 ml-2"
+          bind:checked={hideCADR} />
       </label>
-      <label class="text-gray-700 cursor-pointer m-2 whitespace-no-wrap">
-        Mostrar filtros no HEPA estándar
-        <input type="checkbox" class="form-checkbox" />
+      <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">
+        Mostrar no HEPA estándar
+        <input
+          type="checkbox"
+          class="form-checkbox w-5 h-5 ml-2"
+          bind:checked={showNoHEPA} />
       </label>
     </div>
     <div class="flex flex-wrap -mx-1 md:-mx-4">
