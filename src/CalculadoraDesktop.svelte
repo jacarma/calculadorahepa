@@ -22,7 +22,7 @@
   export let needCADR;
 
   $: w = Math.max(0, MAX_W - ws[0]);
-  $: l = ls[0];
+  $: l = Math.max(0, ls[0]);
   $: h = Math.max(0, MAX_H - hs[0]);
   $: vent = vs[0];
   $: needCADR = Math.round(

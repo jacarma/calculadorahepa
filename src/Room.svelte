@@ -42,6 +42,7 @@
     var length = l + 2 * wallSize;
     var width = w + 2 * wallSize;
 
+    // back walls
     iso.add(
       Shape.Prism(Point(length - wallSize, 0, 0), wallSize, width, h),
       wall
@@ -51,6 +52,7 @@
       wall
     );
 
+    // back windows
     const ventP = Math.max(0, 2 - vent);
     const backWindows = Math.round(l / (135 + ventP * 90));
     const backWindowGap = (l - backWindows * 110) / (backWindows + 1);
@@ -59,19 +61,24 @@
       ww(i * (110 + backWindowGap) + backWindowGap, width - wallSize, iso, win);
     }
 
+    // front walls
     iso.add(Shape.Prism(Point(0, 0, 0), length, wallSize, h), trans);
     iso.add(Shape.Prism(Point(0, 0, 0), wallSize, width, h), trans);
 
-    iso.add(
-      new Path([
-        Point(length - 200, 0, 0),
-        Point(length - 110, 0, 0),
-        Point(length - 110, 0, 200),
-        Point(length - 200, 0, 200)
-      ]),
-      door
-    );
+    // door
+    if (length >= 220 && h >= 210) {
+      iso.add(
+        new Path([
+          Point(length - 200, 0, 0),
+          Point(length - 110, 0, 0),
+          Point(length - 110, 0, 200),
+          Point(length - 200, 0, 200)
+        ]),
+        door
+      );
+    }
 
+    // front windows
     if (vent >= 3) {
       const lDoor = l - 220;
       const frontWindows = Math.round(lDoor / 155);
@@ -86,45 +93,30 @@
     }
   }
   function ww(x, y, iso, color) {
-    iso.add(
-      new Path([
-        Point(x, y, 100),
-        Point(x + 50, y, 100),
-        Point(x + 50, y, 150),
-        Point(x, y, 150)
-      ]),
-      color
-    );
+    let currZ = 100;
+    while (currZ + 80 <= h) {
+      iso.add(
+        new Path([
+          Point(x, y, currZ),
+          Point(x + 50, y, currZ),
+          Point(x + 50, y, currZ + 50),
+          Point(x, y, currZ + 50)
+        ]),
+        color
+      );
 
-    iso.add(
-      new Path([
-        Point(x + 60, y, 100),
-        Point(x + 110, y, 100),
-        Point(x + 110, y, 150),
-        Point(x + 60, y, 150)
-      ]),
-      color
-    );
+      iso.add(
+        new Path([
+          Point(x + 60, y, currZ),
+          Point(x + 110, y, currZ),
+          Point(x + 110, y, currZ + 50),
+          Point(x + 60, y, currZ + 50)
+        ]),
+        color
+      );
 
-    iso.add(
-      new Path([
-        Point(x, y, 160),
-        Point(x + 50, y, 160),
-        Point(x + 50, y, 210),
-        Point(x, y, 210)
-      ]),
-      color
-    );
-
-    iso.add(
-      new Path([
-        Point(x + 60, y, 160),
-        Point(x + 110, y, 160),
-        Point(x + 110, y, 210),
-        Point(x + 60, y, 210)
-      ]),
-      color
-    );
+      currZ = currZ + 60;
+    }
   }
 </script>
 
