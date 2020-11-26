@@ -3,7 +3,7 @@
   export let label;
 </script>
 
-<div class="m-4">
+<div class="flex-1 m-2">
   <label for={label} class="block text-sm font-medium text-gray-700">
     {label}
   </label>

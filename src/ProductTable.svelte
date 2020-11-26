@@ -25,13 +25,13 @@
     const needDevices = Math.ceil(needCADR / p.CADR);
 
     return needDevices === 1
-      ? p.price
+      ? p.price * (p.db > 55 ? 1.5 : 1)
       : p.price * Math.pow(1.8, needDevices) * ((p.db * needDevices) / 55);
   }
 </script>
 
 <div class="bg-white my-4 " id="filtros">
-  <div class="lg:mx-auto lg:container p-2 xl:p-8" id="filtros">
+  <div class="lg:mx-auto lg:container md:p-2 xl:p-8" id="filtros">
     <h1 class="text-3xl lg:text-4xl">Purificadores de aire</h1>
     <div class="-mx-4 mt-4">
       <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">

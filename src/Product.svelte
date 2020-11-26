@@ -8,7 +8,9 @@
   $: numDevices = Math.ceil(needCADR / product.CADR);
 </script>
 
-<div class="flex bg-white shadow rounded-lg overflow-hidden">
+<div
+  class="flex bg-white border-b-2 py-2 md:py-0 md:border-b-0 md:shadow
+  md:rounded-lg overflow-hidden">
   <div class="pt-4 pl-4">
     <iframe
       style="width:120px;height:240px;"

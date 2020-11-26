@@ -38,17 +38,21 @@
     <h1 class="text-center text-xl p-2 shadow">Calculadora de filtros HEPA</h1>
   </div>
 
-  <Meters bind:value={ll} label="Largo" />
-  <Meters bind:value={ww} label="Ancho" />
+  <div class="flex mx-2">
+    <Meters bind:value={ww} label="Ancho" />
+    <Meters bind:value={ll} label="Largo" />
+  </div>
 
   <div style="height: 80vw">
     <Room {l} {w} {h} {vent} />
   </div>
 
-  <Meters bind:value={hh} label="Alto" />
+  <div class="mx-2">
+    <Meters bind:value={hh} label="Alto" />
+  </div>
 
   <div class="ml-3 pt-3">
-    Ventilación existente {vRen[vent]} CAH
+    Ventilación existente {vRen[vent]} ACH
     <button
       type="button"
       class=" rounded-full bg-blue-500 text-white font-bold w-6 h-6 ml-3 shadow
