@@ -21,10 +21,10 @@
 
   const products = csv.map(p => ({
     name: p[0],
-    price: p[1],
+    price: +p[1],
     filter: p[2],
-    CADR: p[3],
-    db: p[4],
+    CADR: +p[3],
+    db: +(p[4] || 99),
     ASIN: p[5]
   }));
 

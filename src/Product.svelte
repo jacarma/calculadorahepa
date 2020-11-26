@@ -37,6 +37,7 @@
       Dispositivos necesarios
       <NumDevices {numDevices} />
     </p>
+    <!-- <p class="my-3 text-gray-600 text-sm">score {product.score}</p> -->
 
     <!-- <div class="flex item-center justify-between mt-3">
         <button

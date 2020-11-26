@@ -2,9 +2,9 @@
   export let ruido;
   let classes;
   $: classes =
-    ruido || 999 <= 55
+    ruido <= 55
       ? "text-green-600 font-bold text-base"
       : "text-red-600 font-bold text-base";
 </script>
 
-<span class={classes}>{ruido || '?'} db</span>
+<span class={classes}>{ruido === 99 ? '?' : ruido} db</span>

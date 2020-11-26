@@ -5,6 +5,29 @@
 
   let hideCADR = false;
   let showNoHEPA = true;
+
+  $: filtered = products
+    .filter(p => {
+      if (hideCADR && p.CADR < needCADR) return false;
+      if (
+        !showNoHEPA &&
+        !["HEPA", "HEPA H13", "HEPA H14", "MERV 13", "MERV 13"].includes(
+          p.filter
+        )
+      )
+        return false;
+      return true;
+    })
+    .sort((p1, p2) => score(p1) - score(p2))
+    .map(p => ({ ...p, score: score(p) }));
+
+  function score(p) {
+    const needDevices = Math.ceil(needCADR / p.CADR);
+
+    return needDevices === 1
+      ? p.price
+      : p.price * Math.pow(1.8, needDevices) * ((p.db * needDevices) / 55);
+  }
 </script>
 
 <div class="bg-white my-4 " id="filtros">
@@ -27,7 +50,7 @@
       </label>
     </div>
     <div class="flex flex-wrap -mx-1 md:-mx-4">
-      {#each products as product}
+      {#each filtered as product}
         <div
           class="px-1 w-full md:my-4 md:px-4 md:w-1/2 xl:my-4 xl:px-4 xl:w-1/3">
           <Product {product} {needCADR} />
