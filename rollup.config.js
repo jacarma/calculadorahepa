@@ -48,7 +48,20 @@ export default {
         { find: "@", replacement: path.resolve(projectRootDir, "src") },
       ],
     }),
+    {
+      name: "csv",
+      transform(code, id) {
+        if (!id.endsWith(".csv")) return null;
 
+        let code1 = code.charCodeAt(0) === 0xfeff ? code.slice(1) : code;
+        code1 = code1.replace(/ñ/g, "/n/");
+        const encoded = Buffer.from(code1).toString("base64");
+        return {
+          code: `export default atob("${encoded}").split("\\n").map(l => l.replace(/\\/n\\//g, "ñ").split(","));`,
+          map: { mappings: "" },
+        };
+      },
+    },
     // In dev mode, call `npm run start` once
     // the bundle has been generated
     !production && serve(),

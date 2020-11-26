@@ -4,6 +4,7 @@
   import CalculadoraMobile from "./CalculadoraMobile.svelte";
   import RangeSlider from "svelte-range-slider-pips";
   import { onMount } from "svelte";
+  import csv from "./purificadores.csv";
 
   const MAX_W = 1200;
   const MAX_L = 1200;
@@ -18,56 +19,14 @@
   let vent;
   let needCADR;
 
-  const products = [
-    {
-      name: "Inventor Quality QLT-700",
-      price: 449.99,
-      filter: "HEPA H13",
-      CADR: 700,
-      db: 54,
-      ASIN: "B081568TVM"
-    },
-    {
-      name: "Inventor Quality QLT-550",
-      price: 420.0,
-      filter: "HEPA H13",
-      CADR: 550,
-      db: 54,
-      ASIN: "B08155YBQH"
-    },
-    {
-      name: "Inventor Quality QLT-700",
-      price: 449.99,
-      filter: "HEPA H13",
-      CADR: 700,
-      db: 54,
-      ASIN: "B081568TVM"
-    },
-    {
-      name: "Inventor Quality QLT-550",
-      price: 420.0,
-      filter: "HEPA H13",
-      CADR: 550,
-      db: 54,
-      ASIN: "B08155YBQH"
-    },
-    {
-      name: "Inventor Quality QLT-700",
-      price: 449.99,
-      filter: "HEPA H13",
-      CADR: 700,
-      db: 54,
-      ASIN: "B081568TVM"
-    },
-    {
-      name: "Inventor Quality QLT-550",
-      price: 420.0,
-      filter: "HEPA H13",
-      CADR: 550,
-      db: 54,
-      ASIN: "B08155YBQH"
-    }
-  ];
+  const products = csv.map(p => ({
+    name: p[0],
+    price: p[1],
+    filter: p[2],
+    CADR: p[3],
+    db: p[4],
+    ASIN: p[5]
+  }));
 
   function size() {
     mobile =
