@@ -31,10 +31,18 @@
 </script>
 
 <div class="w-full h-full flex flex-col">
-  <div class="bg-purple-800 text-white">
-    <h1 class="text-center text-xl p-2 shadow">
+  <div class="bg-purple-800 text-white flex shadow">
+    <h1 class="text-center text-xl p-2 flex-1">
       Calculadora de caudal de filtros HEPA
     </h1>
+    <div class="flex justify-center items-center">
+      <a
+        href="/informacion.html"
+        class="border border-purple-600 text-purple-200 uppercase text-xs
+        rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
+        Más
+      </a>
+    </div>
   </div>
   <div class="flex-1 flex relative">
     <div class="flex-1 flex flex-row">
@@ -87,7 +95,7 @@
         formatter={v => vLabels[v]} />
       <div class="ml-3">{vRen[vent]} renovaciones por hora</div>
       {#if windowInfo}
-        <div class=" p-6 bg-white rounded shadow z-10" style="width: 150%">
+        <div class=" p-6 bg-white rounded shadow-2xl z-10" style="width: 150%">
           <WindowInfo on:close={() => (windowInfo = false)} />
         </div>
       {/if}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Calculadora de caudal de filtros HEPA - Más Información</title>
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/build/bundle.css" />
+  <link rel="stylesheet" href="/build/tailwind.css" />
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      margin: 24px 0;
+    }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-518P73FQNZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-518P73FQNZ");
+  </script>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="w-full h-full flex flex-col">
+    <div class="bg-purple-800 text-white flex shadow">
+      <div class="flex justify-center items-center">
+        <button id="back-button" class="border border-purple-600 text-purple-200 uppercase text-xs
+            rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
+          &lt; Atrás
+        </button>
+      </div>
+
+      <h1 class="text-center text-xl p-2 flex-1">
+        Calculadora de caudal de filtros HEPA
+      </h1>
+
+    </div>
+
+    <div class="container mx-auto pt-6">
+      <p>
+        Esta calculadora permite calcular el caudal necesario para que un
+        purificador de aire consiga complementar la ventilación existente y así
+        alcanzar 5 renovaciones completas cada hora.
+      </p>
+      <p class="">Documentación adicional:</p>
+      <ul class="list-disc">
+        <li>
+          <a class="text-blue-600 underline"
+            href="https://www.csic.es/sites/default/files/guia_para_ventilacion_en_aulas_csic-mesura.pdf"
+            target="_blank">
+            Guía para ventilación en aulas
+          </a>
+          del Instituto de Diagnóstico Ambiental y Estudios del Agua, IDAEA-CSIC
+          Mesura
+        </li>
+        <li>
+          <a class="text-blue-600 underline" href="https://schools.forhealth.org/ventilation-guide/" target="_blank">
+            5 Step Guide To Checking Ventilation Rates In Classrooms
+          </a>
+          de Harvard T.H. Chan School For Public Health
+        </li>
+        <li>
+          <a class="text-blue-600 underline" href="https://twitter.com/jljcolorado" target="_blank">
+            Twitter de José Luis Jiménez
+          </a>
+          profesor de química y bioquímica en la University of Colorado at Boulder
+        </li>
+        <li>
+          <a class="text-blue-600 underline" href="https://bit.ly/colesqa" target="_blank">
+            Dropbox con documentación sobre Colegios y COVID-19
+          </a>
+          de Pablo Fuente
+        </li>
+      </ul>
+
+      <p>
+        Un purificador de aire basado en filtros es un dispositivo que elimina partículas en el aire al forzar el paso
+        de este a través de una malla de fibras llamada filtro.
+      </p>
+      <p>
+        Los filtros HEPA (High Efficiency Particulate Air) quitan al menos un 99,97 % de partículas de 0,3 μm y son generalmente más eficaces para
+        partículas que son más grandes.
+      </p>
+      <p>
+        Un filtro HEPA puede ir detrás de un filtro convencional de fácil limpieza (prefiltro), que quita las impurezas
+        mayores para que el filtro HEPA necesite limpieza o sustitución con menos frecuencia.
+      </p>
+      <p>
+        Los filtros HEPA no generan ozono o subproductos perjudiciales, sin embargo algunos purificadores de aire además
+        de filtrar el aire pueden incluir otros mecanismos.
+      </p>
+      <p>
+
+        Las renovaciones de aire conseguidas por diferentes medios en un mismo espacio simultáneamente son aditivas, es
+        decir:
+      </p>
+      <p class="bg-gray-800 text-yellow-300 p-4 rounded">
+        ACHtotal = ACHventilación + ACHpurificación
+      </p>
+      <p>
+        Por tanto, para tener una renovación de aire total (ACHtotal) que alcance la renovación objetivo (ACHobjetivo),
+        se calcula la renovación de aire a proporcionar por el purificador (ACHpurificación) como:
+      </p>
+      <p class="bg-gray-800 text-yellow-300 p-4 rounded">
+        ACHpurificación = ACHobjetivo - ACHventilación
+      </p>
+      <p>
+        El caudal de aire limpio proporcionado por los equipos comerciales se expresa como CADR, del inglés Clean Air
+        Delivery Rate, y se suele expresar en m³/h. Para conocer cual es el CADR que ha de tener el purificador para un
+        ACHpurificación requerido, se calcula como:
+      </p>
+      <p class="bg-gray-800 text-yellow-300 p-4 rounded">
+        CADR = ACHpurificación * Volumen aula
+      </p>
+      <p>
+        Para conocer qué renovación de aire proporciona un purificador con un CADR dado, se calcula como:
+      </p>
+      <p class="bg-gray-800 text-yellow-300 p-4 rounded">
+        ACHpurificación = CADR / Volumen aula
+      </p>
+      <p>
+        Se puede utilizar más de un purificador hasta sumar el caudal necesario.
+      </p>
+      <p>
+        El purificador se debe colocar en el centro del aula si es posible y no ha de soplar directamente a los
+        ocupantes.
+      </p>
+      <p>
+        No son recomendables los sistemas con ionizadores o producción de ozono, ya que generan reacciones con otros
+        elementos de la atmósfera que no se controlan y tienen consecuencias negativas de formación de contaminantes.
+        Se han de cambiar los filtros siguiendo las recomendaciones del fabricante.
+      </p>
+
+    </div>
+
+
+    <script>
+      document.getElementById("back-button").onclick = () => {
+        if (document.referrer.split('/')[2] === window.location.host) {
+          window.history.back();
+        } else {
+          window.location.href = "/";
+        }
+      }
+    </script>
+</body>
+
+</html>

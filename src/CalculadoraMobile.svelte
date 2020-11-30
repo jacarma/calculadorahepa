@@ -34,8 +34,18 @@
 </script>
 
 <div class="w-full">
-  <div class="bg-purple-800 text-white">
-    <h1 class="text-center text-xl p-2 shadow">Calculadora de filtros HEPA</h1>
+  <div class="bg-purple-800 text-white flex shadow">
+    <h1 class="text-left text-xl p-2 pl-4 flex-1">
+      Calculadora de filtros HEPA
+    </h1>
+    <div class="flex justify-center items-center">
+      <a
+        href="/informacion.html"
+        class="border border-purple-600 text-purple-200 uppercase text-xs
+        rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
+        Más
+      </a>
+    </div>
   </div>
 
   <div class="flex mx-2">

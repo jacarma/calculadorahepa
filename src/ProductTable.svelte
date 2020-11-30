@@ -3,12 +3,12 @@
   export let needCADR;
   export let products = [1, 2, 3];
 
-  let hideCADR = false;
+  let showLowCADR = true;
   let showNoHEPA = true;
 
   $: filtered = products
     .filter(p => {
-      if (hideCADR && p.CADR < needCADR) return false;
+      if (!showLowCADR && p.CADR < needCADR) return false;
       if (
         !showNoHEPA &&
         !["HEPA", "HEPA H13", "HEPA H14", "MERV 13", "MERV 13"].includes(
@@ -33,13 +33,23 @@
 <div class="bg-white my-4 " id="filtros">
   <div class="lg:mx-auto lg:container md:p-2 xl:p-8" id="filtros">
     <h1 class="text-3xl lg:text-4xl">Purificadores de aire</h1>
+    <p class="text-sm text-gray-600">
+      * Algunos enlaces son de afiliado, un 5% de los beneficios obtenidos por
+      estos enlaces será donado a
+      <a
+        class="text-blue-600 underline"
+        href="https://es.gofundme.com/f/medidores-co2-para-espana-y-latinoamerica"
+        target="_blank">
+        la campaña de reparto de medidores de CO2 de José Luis Jiménez
+      </a>
+    </p>
     <div class="-mx-4 mt-4">
       <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">
-        Ocultar CADR bajo
+        Mostrar CADR bajo
         <input
           type="checkbox"
           class="form-checkbox w-5 h-5 ml-2"
-          bind:checked={hideCADR} />
+          bind:checked={showLowCADR} />
       </label>
       <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">
         Mostrar no HEPA estándar
