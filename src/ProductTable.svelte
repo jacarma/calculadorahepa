@@ -20,7 +20,11 @@
     const filterFactor = isHEPA(p) ? 1 : 3;
     const totalPrice = needDevices * p.price;
     const noiseFactor =
-      needDevices === 1 && p.db <= 55 ? 1 : (needDevices * p.db) / 55;
+      needDevices === 1 && p.db <= 55
+        ? 1
+        : needDevices === 1 && p.db > 55
+        ? 1.5
+        : (needDevices * p.db) / 55;
     const wiredFactor = 1 + (needDevices - 1) * 0.2;
     return totalPrice * filterFactor * noiseFactor * wiredFactor;
     // return needDevices === 1
