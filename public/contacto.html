@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Calculadora de caudal de filtros HEPA - Más Información</title>
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/build/bundle.css" />
+  <link rel="stylesheet" href="/build/tailwind.css" />
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      margin: 24px 0;
+    }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-518P73FQNZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-518P73FQNZ");
+  </script>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="w-full h-full flex flex-col">
+    <div class="bg-purple-800 text-white flex shadow">
+      <div class="flex justify-center items-center">
+        <button id="back-button" class="border border-purple-600 text-purple-200 uppercase text-xs
+            rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
+          &lt; Atrás
+        </button>
+      </div>
+
+      <h1 class="text-center text-xl p-2 flex-1">
+        Calculadora de caudal de filtros HEPA
+      </h1>
+
+    </div>
+
+    <div class="container mx-auto pt-6">
+      <p>
+      <form name="contact" method="POST" data-netlify="true" value="/#contactsuccess">
+        <p>
+          <label for="name" class="block">Tu nombre</label>
+          <input type="text" name="name" id="name" class="form-input w-full" />
+        </p>
+        <p>
+          <label>Tu email</label> 
+          <input type="email" name="email" id="email" class="form-input w-full" />
+        </p>
+        <p>
+          <label>Mensaje</label> 
+          <textarea name="message" id="message" rows="8" class="form-textarea w-full"></textarea>
+        </p>
+        <p>
+          <button type="submit" class="bg-purple-700 text-white px-4 py-2 rounded">Enviar</button>
+        </p>
+      </form>
+      </p>
+
+
+    </div>
+
+
+    <script>
+      document.getElementById("back-button").onclick = () => {
+        if (document.referrer.split('/')[2] === window.location.host) {
+          window.history.back();
+        } else {
+          window.location.href = "/";
+        }
+      }
+    </script>
+</body>
+
+</html>

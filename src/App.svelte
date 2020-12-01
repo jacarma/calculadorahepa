@@ -2,6 +2,7 @@
   import ProductTable from "./ProductTable.svelte";
   import CalculadoraDesktop from "./CalculadoraDesktop.svelte";
   import CalculadoraMobile from "./CalculadoraMobile.svelte";
+  import Footer from "./Footer.svelte";
   import RangeSlider from "svelte-range-slider-pips";
   import { onMount } from "svelte";
   import csv from "./purificadores.csv";
@@ -57,3 +58,5 @@
 {/if}
 
 <ProductTable {products} {needCADR} />
+
+<Footer/>

@@ -32,8 +32,8 @@
 
 <div class="bg-white my-4 " id="filtros">
   <div class="lg:mx-auto lg:container md:p-2 xl:p-8" id="filtros">
-    <h1 class="text-3xl lg:text-4xl">Purificadores de aire</h1>
-    <p class="text-sm text-gray-600">
+    <h1 class="text-3xl lg:text-4xl my-6">Purificadores de aire</h1>
+    <p class="text-xs text-gray-600">
       * Algunos enlaces son de afiliado, un 5% de los beneficios obtenidos por
       estos enlaces será donado a
       <a
