@@ -9,13 +9,7 @@
   $: filtered = products
     .filter(p => {
       if (!showLowCADR && p.CADR < needCADR) return false;
-      if (
-        !showNoHEPA &&
-        !["HEPA", "HEPA H13", "HEPA H14", "MERV 13", "MERV 13"].includes(
-          p.filter
-        )
-      )
-        return false;
+      if (!showNoHEPA && !isHEPA(p)) return false;
       return true;
     })
     .sort((p1, p2) => score(p1) - score(p2))
@@ -23,10 +17,20 @@
 
   function score(p) {
     const needDevices = Math.ceil(needCADR / p.CADR);
-
-    return needDevices === 1
-      ? p.price * (p.db > 55 ? 1.5 : 1)
-      : p.price * Math.pow(1.8, needDevices) * ((p.db * needDevices) / 55);
+    const filterFactor = isHEPA(p) ? 1 : 3;
+    const totalPrice = needDevices * p.price;
+    const noiseFactor =
+      needDevices === 1 && p.db <= 55 ? 1 : (needDevices * p.db) / 55;
+    const wiredFactor = 1 + (needDevices - 1) * 0.2;
+    return totalPrice * filterFactor * noiseFactor * wiredFactor;
+    // return needDevices === 1
+    //   ? p.price * (p.db > 55 ? 1.5 : 1)
+    //   : p.price * Math.pow(1.8, needDevices) * ((p.db * needDevices) / 55);
+  }
+  function isHEPA(p) {
+    return ["HEPA", "HEPA H13", "HEPA H14", "MERV 13", "MERV 13"].includes(
+      p.filter
+    );
   }
 </script>
 
@@ -42,6 +46,9 @@
         target="_blank">
         la campaña de reparto de medidores de CO2 de José Luis Jiménez
       </a>
+    </p>
+    <p class="text-xs text-gray-600">
+      ** Los valores indicados en la lista son proporcionados por el fabricante
     </p>
     <div class="-mx-4 mt-4">
       <label class="text-gray-700 cursor-pointer m-4 whitespace-no-wrap">
