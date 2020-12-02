@@ -93,7 +93,9 @@
         pips
         all="label"
         formatter={v => vLabels[v]} />
-      <div class="ml-3">{vRen[vent]} renovaciones por hora</div>
+      <div class="ml-3">
+        {vRen[vent]} {vent === 1 ? 'renovación' : 'renovaciones'} por hora
+      </div>
       {#if windowInfo}
         <div class=" p-6 bg-white rounded shadow-2xl z-10" style="width: 150%">
           <WindowInfo on:close={() => (windowInfo = false)} />
