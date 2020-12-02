@@ -1,6 +1,7 @@
 <script>
   import Product from "./Product.svelte";
   export let needCADR;
+  export let mobile;
   export let products = [1, 2, 3];
 
   let showLowCADR = true;
@@ -41,7 +42,15 @@
 <div class="bg-white my-4 " id="filtros">
   <div class="lg:mx-auto lg:container md:p-2 xl:p-8" id="filtros">
     <div class="px-2 md:px-0">
-      <h1 class="text-3xl lg:text-4xl my-6">Purificadores de aire</h1>
+      <h1 class="text-3xl lg:text-4xl my-6">
+        Purificadores de aire
+        {#if mobile === false}
+          <span class="text-lg text-purple-600">
+            (CADR necesario {needCADR})
+          </span>
+        {/if}
+      </h1>
+
       <p class="text-xs text-gray-500">
         * Algunos enlaces son de afiliado, un 5% de los beneficios obtenidos por
         estos enlaces será donado a
@@ -57,7 +66,7 @@
       <div class="-mx-4 mt-4">
         <label
           class="text-gray-600 text-sm cursor-pointer m-4 whitespace-no-wrap">
-          Mostrar CADR bajo
+          Ver CADR bajo
           <input
             type="checkbox"
             class="form-checkbox ml-2"
@@ -65,7 +74,7 @@
         </label>
         <label
           class="text-gray-600 text-sm cursor-pointer m-4 whitespace-no-wrap">
-          Mostrar no HEPA estándar
+          Ver NO HEPA
           <input
             type="checkbox"
             class="form-checkbox ml-2"

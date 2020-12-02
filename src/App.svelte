@@ -57,6 +57,6 @@
   <CalculadoraDesktop bind:l bind:w bind:h bind:vent bind:needCADR />
 {/if}
 
-<ProductTable {products} {needCADR} />
+<ProductTable {products} {needCADR} {mobile} />
 
-<Footer/>
+<Footer />

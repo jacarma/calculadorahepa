@@ -101,12 +101,18 @@
       {/if}
 
     </div>
-    <div class="absolute top-0 right-0 mt-4 mr-4 w-1/3 text-right">
+    <div
+      class="absolute top-0 right-0 mt-4 mr-4 w-1/3 text-right text-gray-600
+      text-sm">
       <div>volumen: {l / 100} * {w / 100} * {h / 100} m³</div>
       <div>ventilación: {vLabels[vent]} {vRen[vent]} ACH</div>
-      <div class="text-xl text-purple-700">CADR necesario: {needCADR} m³/h</div>
+      <div class="text-base text-purple-600">
+        CADR necesario: {needCADR} m³/h
+      </div>
       <div>
-        <a href="#filtros" class="text-blue-600 underline">ver filtros</a>
+        <a href="#filtros" class="text-base text-blue-600 underline">
+          ver filtros
+        </a>
       </div>
     </div>
   </div>
