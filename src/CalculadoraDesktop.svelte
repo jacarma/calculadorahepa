@@ -40,7 +40,11 @@
         href="/informacion.html"
         class="border border-purple-600 text-purple-200 uppercase text-xs
         rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
-        Más
+        Ayuda
+        <span class="hidden">
+          información sobre purificación mediante filtros y sobre esta
+          calculadora
+        </span>
       </a>
     </div>
   </div>
