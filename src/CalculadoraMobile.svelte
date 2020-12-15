@@ -48,12 +48,12 @@
     </div>
   </div>
 
-  <div class="flex mx-2">
+  <div class="flex mx-2 relative z-10">
     <Meters bind:value={ww} label="Ancho" />
     <Meters bind:value={ll} label="Largo" />
   </div>
 
-  <div style="height: 80vw">
+  <div style="height: 80vw; margin-top: -50px">
     <Room {l} {w} {h} {vent} />
   </div>
 
