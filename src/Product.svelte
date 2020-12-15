@@ -19,7 +19,10 @@
 
 <div
   class="flex bg-white border-b-2 py-2 md:py-0 md:border-b-0 md:shadow
-  md:rounded-lg overflow-hidden">
+  md:rounded-lg overflow-hidden"
+  on:click={() => {
+    gtag('event', 'view-item', product);
+  }}>
   {#if !failedIframe}
     <div class="pt-4 pl-4">
       <iframe

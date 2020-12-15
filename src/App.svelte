@@ -32,6 +32,7 @@
       const p = new URLSearchParams({ w, l, h, vent });
       window.history.replaceState({ w, l, h, vent }, "", "?" + p.toString());
     }
+    gtag("event", "calculate", { w, l, h, vent });
   }
 
   function size() {
