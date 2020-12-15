@@ -38,7 +38,8 @@
       text: `Acabo de usar calculadorahepa.com
 Volumen: ${ww} * ${ll} * ${hh} m³, 
 ventilacion: ${vLabels[vent]} (${vRen[vent]} ACH). 
-CADR necesario: ${needCADR}`,
+CADR necesario: ${needCADR}
+`,
       url: window.location.href
     };
     try {
