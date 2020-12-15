@@ -76,6 +76,7 @@
     {#if navigator.share}
       <div class="w-1/2 flex items-end justify-end">
         <button
+          on:click={share}
           title="Compartir"
           class="rounded-full bg-purple-700 shadow text-white w-10 h-10 flex
           items-center justify-center">
