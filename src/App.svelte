@@ -7,17 +7,15 @@
   import { onMount } from "svelte";
   import csv from "./purificadores.csv";
 
-  const MAX_W = 1200;
-  const MAX_L = 1200;
-  const MAX_H = 500;
-  const vLabels = ["mala", "baja", "normal", "buena", "excelente"];
-  const vRen = [0.5, 1, 1.5, 3, 4];
-  let mobile = true;
+  let mobile = undefined;
 
-  let w;
-  let l;
-  let h;
-  let vent;
+  const p = new URLSearchParams(window.location.search);
+  const param = (name, dflt) => parseFloat(p.get(name)) || dflt;
+
+  let w = param("w", 500);
+  let l = param("l", 900);
+  let h = param("h", 280);
+  let vent = param("vent", 0);
   let needCADR;
 
   const products = csv.map(p => ({
@@ -28,6 +26,13 @@
     db: +(p[4] || 99),
     ASIN: p[5]
   }));
+
+  $: {
+    if (URLSearchParams) {
+      const p = new URLSearchParams({ w, l, h, vent });
+      window.history.replaceState({ w, l, h, vent }, "", "?" + p.toString());
+    }
+  }
 
   function size() {
     mobile =
@@ -51,9 +56,10 @@
 
 <svelte:window on:resize={size} />
 
-{#if mobile}
+{#if mobile === true}
   <CalculadoraMobile bind:l bind:w bind:h bind:vent bind:needCADR />
-{:else}
+{/if}
+{#if mobile === false}
   <CalculadoraDesktop bind:l bind:w bind:h bind:vent bind:needCADR />
 {/if}
 

@@ -4,23 +4,22 @@
   import Meters from "./Meters.svelte";
   import WindowInfo from "./WindowInfo.svelte";
 
+  export let w = 500;
+  export let l = 900;
+  export let h = 280;
+  export let vent = 0;
+  export let needCADR;
+
   const MAX_W = 1200;
   const MAX_L = 1200;
   const MAX_H = 500;
   const vLabels = ["mala", "baja", "normal", "buena", "excelente"];
   const vRen = [0.5, 1, 1.5, 3, 4];
 
-  let ww = 6;
-  let ll = 9;
-  let hh = 2.8;
-
-  let vs = [0];
-
-  export let w;
-  export let l;
-  export let h;
-  export let vent;
-  export let needCADR;
+  let ww = w / 100;
+  let ll = l / 100;
+  let hh = h / 100;
+  let vs = [vent];
 
   $: w = ww * 100;
   $: l = ll * 100;

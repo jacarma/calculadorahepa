@@ -39,10 +39,10 @@
   }
 </script>
 
-<div class="bg-white my-4 " id="filtros">
+<div class="bg-white py-4 " id="filtros">
   <div class="lg:mx-auto lg:container md:p-2 xl:p-8" id="filtros">
     <div class="px-2 md:px-0">
-      <h1 class="text-3xl lg:text-4xl my-6">
+      <h1 class="text-3xl lg:text-4xl mt-4 mb-2">
         Purificadores de aire
         {#if mobile === false}
           <span class="text-lg text-purple-600">

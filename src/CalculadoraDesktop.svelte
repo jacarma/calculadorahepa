@@ -9,17 +9,17 @@
   const vLabels = ["mala", "baja", "normal", "buena", "excelente"];
   const vRen = [0.5, 1, 1.5, 3, 4];
 
-  let ws = [MAX_W - 600];
-  let ls = [900];
-  let hs = [MAX_H - 280];
-  let vs = [0];
-  let windowInfo = false;
-
-  export let w;
-  export let l;
-  export let h;
-  export let vent;
+  export let w = 500;
+  export let l = 900;
+  export let h = 280;
+  export let vent = 0;
   export let needCADR;
+
+  let ws = [MAX_W - w];
+  let ls = [l];
+  let hs = [MAX_H - h];
+  let vs = [vent];
+  let windowInfo = false;
 
   $: w = Math.max(0, MAX_W - ws[0]);
   $: l = Math.max(0, ls[0]);
