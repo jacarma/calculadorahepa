@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="flex flex-wrap -mx-1 md:-mx-4">
-      {#each filtered as product}
+      {#each filtered as product (product.id)}
         <div
           class="px-1 w-full md:my-4 md:px-4 md:w-1/2 xl:my-4 xl:px-4 xl:w-1/3">
           <Product {product} {needCADR} />

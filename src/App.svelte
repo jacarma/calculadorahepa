@@ -18,19 +18,20 @@
   let vent = param("vent", 0);
   let needCADR;
 
-  const products = csv.map(p => ({
+  const products = csv.map((p, i) => ({
     name: p[0],
     price: +p[1],
     filter: p[2],
     CADR: +p[3],
     db: +(p[4] || 99),
-    ASIN: p[5]
+    ASIN: p[5],
+    id: i
   }));
 
   $: {
     if (URLSearchParams) {
       const p = new URLSearchParams({ w, l, h, vent });
-      window.history.replaceState({ w, l, h, vent }, "", "?" + p.toString());
+      window.history.replaceState({}, "", "?" + p.toString());
     }
     gtag("event", "calculate", { w, l, h, vent });
   }

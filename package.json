@@ -39,6 +39,6 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup --watch -c",
-    "start": "sirv public"
+    "start": "sirv public --host"
   }
 }
