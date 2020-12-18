@@ -4,9 +4,12 @@
   import CalculadoraMobile from "./CalculadoraMobile.svelte";
   import Footer from "./Footer.svelte";
   import RangeSlider from "svelte-range-slider-pips";
-  import { onMount } from "svelte";
+  import { onMount, setContext } from "svelte";
   import csv from "./purificadores.csv";
+  import { writable } from "svelte/store";
 
+  let appConfig = writable({ adBlock: true, urlParams: "" });
+  setContext("appConfig", appConfig);
   let mobile = undefined;
 
   const p = new URLSearchParams(window.location.search);
@@ -30,8 +33,11 @@
 
   $: {
     if (URLSearchParams) {
-      const p = new URLSearchParams({ w, l, h, vent });
-      window.history.replaceState({}, "", "?" + p.toString());
+      if (("" + l + w + h + vent).length <= 16) {
+        const p = new URLSearchParams({ w, l, h, vent });
+        $appConfig.urlParams = p.toString();
+        window.history.replaceState({}, "", "?" + p.toString());
+      }
     }
     gtag("event", "calculate", { w, l, h, vent });
   }
@@ -40,8 +46,22 @@
     mobile =
       window.innerHeight >= window.innerWidth || window.innerHeight <= 640;
   }
+  let attempts = 0;
+  function checkAdBlock() {
+    if (window.google_tag_data) {
+      $appConfig = { ...$appConfig, adBlock: false };
+    } else {
+      attempts = attempts + 1;
+      if (attempts < 1000) {
+        window.setTimeout(checkAdBlock, 100);
+      }
+    }
+  }
 
-  onMount(size);
+  onMount(() => {
+    size();
+    checkAdBlock();
+  });
 </script>
 
 <style>
@@ -64,7 +84,6 @@
 {#if mobile === false}
   <CalculadoraDesktop bind:l bind:w bind:h bind:vent bind:needCADR />
 {/if}
-
 <ProductTable {products} {needCADR} {mobile} />
 
 <Footer />

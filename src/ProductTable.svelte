@@ -52,16 +52,9 @@
       </h1>
 
       <p class="text-xs text-gray-500">
-        * Algunos enlaces son de afiliado, un 5% de los beneficios obtenidos por
-        estos enlaces será donado a
-        <a
-          class="text-blue-600 underline"
-          href="https://es.gofundme.com/f/medidores-co2-para-espana-y-latinoamerica"
-          target="_blank">
-          la campaña de reparto de medidores de CO2 de José Luis Jiménez
-        </a>
-        . ** Los valores indicados en la lista son proporcionados por el
-        fabricante
+        * Los valores indicados en la lista son proporcionados por el
+        fabricante. ** En calidad de Afiliado de Amazon, obtengo ingresos por
+        las compras adscritas que cumplen los requisitos aplicables
       </p>
       <div class="-mx-4 mt-4">
         <label
@@ -84,10 +77,7 @@
     </div>
     <div class="flex flex-wrap -mx-1 md:-mx-4">
       {#each filtered as product (product.id)}
-        <div
-          class="px-1 w-full md:my-4 md:px-4 md:w-1/2 xl:my-4 xl:px-4 xl:w-1/3">
-          <Product {product} {needCADR} />
-        </div>
+        <Product {product} {needCADR} />
       {/each}
     </div>
   </div>

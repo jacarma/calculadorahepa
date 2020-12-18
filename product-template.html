@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<% var defaultACH=Math.round(100 * CADR / 126)/100 ; var defaultACHSum=Math.round(100 * (defaultACH + 0.5))/100; var
+  capable=defaultACHSum>= 5;
+  var defaultNumDevices = Math.ceil(4.5 * 126 / CADR);
+  var defaultDevicesCADRSum = defaultNumDevices * CADR;
+  var defaultDevicesACHSum = Math.round(100 * defaultDevicesCADRSum / 126)/100;
+  var defaultAccNoise=Math.round(Math.log10(Math.pow(10, db / 10) * defaultNumDevices)*1000)/100;%>
+
+  <head>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>
+      CalculadoraHEPA: <%= name %>
+    </title>
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/build/bundle.css" />
+    <link rel="stylesheet" href="/build/tailwind.css" />
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      p {
+        margin: 24px 0;
+      }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-518P73FQNZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-518P73FQNZ");
+    </script>
+  </head>
+
+  <body class="bg-gray-100">
+
+    <div class="w-full h-full flex flex-col">
+      <div class="bg-purple-800 text-white flex shadow">
+        <div class="flex justify-center items-center">
+          <button id="back-button" class="border border-purple-600 text-purple-200 uppercase text-xs
+            rounded px-4 py-2 mx-2 hover:bg-purple-600 ">
+            &lt; Atrás
+          </button>
+        </div>
+
+        <h1 class="text-center p-2 flex-1 text-purple-200">
+          CalculadoraHEPA: <%=name %>
+        </h1>
+
+      </div>
+
+
+      <div class="container mx-auto pt-6">
+
+        <div class="text-center text-2xl p-2 flex-1">
+          <%=name %>
+        </div>
+        <p>
+
+        <div class="float-left mr-6 mb-4 p-4 shadow rounded bg-white">
+          <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"
+            class="m-0 p-0 overflow-hidden"
+            src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=hepa07-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=<%= ASIN %>&bc1=ffffff&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr"></iframe>
+        </div>
+        <%=name %> es un purificador de aire con filtro <%=filter %> con un CADR (Clean Air Delivery Rate) de
+            <%= CADR%>
+              m³/h.
+              </p>
+
+              <h2 class="text-xl py-2">
+                Potencia
+              </h2>
+
+              <p>
+                Este purificador de aire es capaz de producir <%= CADR%> m³ de aire limpio cada hora.
+              </p>
+
+              <p>
+                En un espacio de <span class="length">9</span> * <span class="width">5</span> * <span
+                  class="height">2.8</span> m³
+                sería capaz de alcanzar <span class="ACH">
+                  <%= defaultACH %>
+                </span> ACH (Renovaciones completas del aire).
+              </p>
+              <p>
+                Si la ventilación existente es <span class="vLabel">mala</span> (<span class="vACH">0.5</span>
+                ACH)</span> conseguimos <span class="ACHSum">
+                  <%= defaultACHSum %>
+                </span>
+                renovaciones completas sumando las ACH de la ventilación y el filtrado.
+              </p>
+              <% if (!capable) { %>
+                <p class="not-capable">
+                  Para alcanzar 5 renovaciones completas en dicho espacio necesitaríamos utilizar
+                  <span class="numDevices">
+                    <%= defaultNumDevices %>
+                  </span> purificadores a la vez, que conseguirían sumar un CADR de <span class="devicesCADRSum">
+                    <%= defaultDevicesCADRSum %>
+                  </span> m³/h y alcanzar <span class="devicesACHSum">
+                    <%= defaultDevicesACHSum %>
+                  </span> renovaciones completas por hora por ellos mismos a las que habría que sumar la ventilación.
+                </p>
+                <% } %>
+
+                  <h2 class="text-xl py-2">
+                    Ruido
+                  </h2>
+
+                  <p>
+                    El nivel de ruido a la potencia máxima de este purificador es
+                    <% if (db===99) { %>
+                      desconocido.
+                      <% } else { %>
+                        de <%= db %> db.
+                          <% } %>
+                  </p>
+                  <p>
+                    Si vamos a utilizar el dispositivo en un dormitorio es deseable que tenga un modo nocturno con un
+                    nivel de ruido muy bajo.
+                    Pero si queremos utilizar el purificador en un aula escolar para evitar infecciones, daremos
+                    prioridad a que su modo de máxima potencia no sea ruidoso, ya
+                    que es el modo más eficaz.
+                  </p>
+                  <p>
+                    Un profesor proyectando la voz suele estar sobre los 65 db, si nuestro purificador pasa de 55 db
+                    entonces
+                    tendrá que levantar la voz para asegurar un ratio de señal / ruido suficiente.
+                  </p>
+                  <p>
+                  <table>
+                    <tr>
+                      <th></th>
+                      <th class="text-left py-1 px-2">Nivel dB</th>
+                      <th class="text-left py-1 px-2">Ejemplo</th>
+                    </tr>
+                    <tr>
+                      <td class="pr-4">
+                        <% if (db < 50) { %>
+                          <%= name %> ▸
+                            <% } %>
+                      </td>
+                      <td class="py-1 px-2 bg-green-300">30</td>
+                      <td class="py-1 px-2 bg-green-300">Biblioteca</td>
+                    </tr>
+                    <tr>
+                      <td class="pr-4">
+                        <% if (db>= 50 && db <55) { %>
+                            <%= name %> ▸
+                              <% } %>
+                      </td>
+                      <td class="py-1 px-2 bg-green-200">50</td>
+                      <td class="py-1 px-2 bg-green-200">Oficina silenciosa</td>
+                    </tr>
+                    <tr>
+                      <td class="pr-4">
+                        <% if (db>= 55 && db <60) { %>
+                            <%= name %> ▸
+                              <% } %>
+                      </td>
+                      <td class="py-1 px-2 bg-yellow-100">55-60</td>
+                      <td class="py-1 px-2 bg-yellow-100">Conversación normal</td>
+                    </tr>
+                    <tr>
+                      <td class="pr-4">
+                        <% if (db>= 60 && db < 70) { %>
+                            <%= name %> ▸
+                              <% } %>
+                      </td>
+                      <td class="py-1 px-2 bg-yellow-200">65</td>
+                      <td class="py-1 px-2 bg-yellow-200">Profesor proyectando la voz</td>
+                    </tr>
+                    <tr>
+                      <td class="pr-4">
+                        <% if (db>= 70 && db < 99) { %>
+                            <%= name %> ▸
+                              <% } %>
+                      </td>
+                      <td class="py-1 px-2 bg-yellow-300">70</td>
+                      <td class="py-1 px-2 bg-yellow-300">Restaurante ruidoso</td>
+                    </tr>
+                  </table>
+                  </p>
+
+                  <% if (db < 99 && defaultNumDevices> 1) { %>
+                    <p class="not-capable">
+                      El ruido total que producirían <span class="numDevices">
+                        <%= defaultNumDevices%>
+                      </span> dispositivos <%=name%> funcionando a la
+                        vez
+                        sería de <%= defaultAccNoise %> dB.
+                    </p>
+                    <% } %>
+                      <p>
+                        <%= JSON.stringify(Math.log10) %>
+                      </p>
+
+
+                      <p class="text-xs text-gray-600">
+                        * Los valores indicados en la lista son proporcionados por el
+                        fabricante. ** En calidad de Afiliado de Amazon, obtengo ingresos por
+                        las compras adscritas que cumplen los requisitos aplicables
+                      </p>
+      </div>
+
+      <!-- <script>
+        var idcomments_acct = 'f8d343a686dbc9a258e5fbee7e3a9a86';
+        var idcomments_post_id;
+        var idcomments_post_url;
+      </script>
+      <span class="IDCommentsPostTitle" style="display:none"></span>
+      <script type='text/javascript' src='https://www.intensedebate.com/js/genericCommentWrapperV2.js'></script> -->
+
+      <div class="bg-gray-800 text-gray-100 text-sm p-8">
+        Desarrollado por Javier Carrasco
+        <a href="/contacto.html" class="text-blue-600 underline">contacto</a>
+      </div>
+
+
+
+      <script>
+        document.getElementById("back-button").onclick = () => {
+          if (document.referrer.split('/')[2] === window.location.host) {
+            window.history.back();
+          } else {
+            window.location.href = "/";
+          }
+        }
+        var p = new URLSearchParams(window.location.search);
+        const vLabels = ["mala", "baja", "normal", "buena", "excelente"];
+        const vRen = [0.5, 1, 1.5, 3, 4];
+
+        var w = param("w", 500);
+        var l = param("l", 900);
+        var h = param("h", 280);
+        var vent = param("vent", 0);
+        var CADR = <%= CADR %>;
+        var db = <%= db %>;
+        var vLabel = vLabels[vent] || "mala";
+        var vACH = vRen[vent] || 0.5;
+
+        var volume = w * h * l / 100 / 100 / 100;
+        var ACH = Math.round(100 * CADR / volume) / 100;
+        var ACHSum = Math.round(100 * (ACH + vACH)) / 100;
+        var capable = ACHSum >= 5;
+        var numDevices = Math.ceil((5 - vACH) * volume / CADR);
+        var devicesCADRSum = numDevices * CADR;
+        var devicesACHSum = Math.round(100 * devicesCADRSum / volume) / 100;
+        var accNoise = Math.round(Math.log10(Math.pow(10, db / 10) * numDevices) * 1000) / 100;
+
+        setP(".width", w / 100);
+        setP(".height", h / 100);
+        setP(".length", l / 100);
+        setP(".ACH", ACH);
+        setP(".vLabel", vLabel);
+        setP(".vACH", vACH);
+        setP(".ACHSum", ACHSum);
+
+        if (capable) {
+          document.querySelectorAll(".not-capable").forEach(function (el) {
+            el.classList.add("hidden");
+          })
+        }
+
+        setP(".capable", capable);
+        setP(".numDevices", numDevices);
+        setP(".devicesCADRSum", devicesCADRSum);
+        setP(".devicesACHSum", devicesACHSum);
+        setP(".accNoise", accNoise);
+
+        function param(name, dflt) {
+          return parseFloat(p.get(name)) || dflt
+        };
+        function setP(selector, value) {
+          document.querySelectorAll(selector).forEach(function (el) {
+            el.textContent = value;
+          })
+        }
+      </script>
+  </body>
+
+</html>
