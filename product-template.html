@@ -115,104 +115,143 @@
                 </p>
                 <% } %>
 
-                  <h2 class="text-xl py-2">
-                    Ruido
+                  <h2 class="text-xl py-2 clear-both">
+                    Filtro
                   </h2>
-
                   <p>
-                    El nivel de ruido a la potencia máxima de este purificador es
-                    <% if (db===99) { %>
-                      desconocido.
-                      <% } else { %>
-                        de <%= db %> db.
-                          <% } %>
+                    Un purificador de aire basado en filtros es un dispositivo que elimina partículas en el aire al
+                    forzar el paso de este a través de una malla de fibras llamada filtro.
                   </p>
                   <p>
-                    Si vamos a utilizar el dispositivo en un dormitorio es deseable que tenga un modo nocturno con un
-                    nivel de ruido muy bajo.
-                    Pero si queremos utilizar el purificador en un aula escolar para evitar infecciones, daremos
-                    prioridad a que su modo de máxima potencia no sea ruidoso, ya
-                    que es el modo más eficaz.
+                    El filtro que incorpora este purificador es de tipo <%=filter %>.
                   </p>
-                  <p>
-                    Un profesor proyectando la voz suele estar sobre los 65 db, si nuestro purificador pasa de 55 db
-                    entonces
-                    tendrá que levantar la voz para asegurar un ratio de señal / ruido suficiente.
-                  </p>
-                  <p>
-                  <table>
-                    <tr>
-                      <th></th>
-                      <th class="text-left py-1 px-2">Nivel dB</th>
-                      <th class="text-left py-1 px-2">Ejemplo</th>
-                    </tr>
-                    <tr>
-                      <td class="pr-4">
-                        <% if (db < 50) { %>
-                          <%= name %> ▸
-                            <% } %>
-                      </td>
-                      <td class="py-1 px-2 bg-green-300">30</td>
-                      <td class="py-1 px-2 bg-green-300">Biblioteca</td>
-                    </tr>
-                    <tr>
-                      <td class="pr-4">
-                        <% if (db>= 50 && db <55) { %>
-                            <%= name %> ▸
-                              <% } %>
-                      </td>
-                      <td class="py-1 px-2 bg-green-200">50</td>
-                      <td class="py-1 px-2 bg-green-200">Oficina silenciosa</td>
-                    </tr>
-                    <tr>
-                      <td class="pr-4">
-                        <% if (db>= 55 && db <60) { %>
-                            <%= name %> ▸
-                              <% } %>
-                      </td>
-                      <td class="py-1 px-2 bg-yellow-100">55-60</td>
-                      <td class="py-1 px-2 bg-yellow-100">Conversación normal</td>
-                    </tr>
-                    <tr>
-                      <td class="pr-4">
-                        <% if (db>= 60 && db < 70) { %>
-                            <%= name %> ▸
-                              <% } %>
-                      </td>
-                      <td class="py-1 px-2 bg-yellow-200">65</td>
-                      <td class="py-1 px-2 bg-yellow-200">Profesor proyectando la voz</td>
-                    </tr>
-                    <tr>
-                      <td class="pr-4">
-                        <% if (db>= 70 && db < 99) { %>
-                            <%= name %> ▸
-                              <% } %>
-                      </td>
-                      <td class="py-1 px-2 bg-yellow-300">70</td>
-                      <td class="py-1 px-2 bg-yellow-300">Restaurante ruidoso</td>
-                    </tr>
-                  </table>
-                  </p>
-
-                  <% if (db < 99 && defaultNumDevices> 1) { %>
-                    <p class="not-capable">
-                      El ruido total que producirían <span class="numDevices">
-                        <%= defaultNumDevices%>
-                      </span> dispositivos <%=name%> funcionando a la
-                        vez
-                        sería de <%= defaultAccNoise %> dB.
+                  <% if (filter==="HEPA" ) { %>
+                    <p>
+                      HEPA (High Efficiency Particulate Air) es un estándar de la eficacia de los filtros. Muchas de
+                      las pruebas de eliminación de SARS-CoV-2 se ha realizado con filtros HEPA por lo que elegir un
+                      purificador con filtros HEPA como este nos debe dar confianza.
                     </p>
-                    <% } %>
+                    <p>
+                      Ver: <a class="text-blue-600 underline"
+                        href="https://www.nytimes.com/wirecutter/blog/can-hepa-air-purifiers-capture-coronavirus/">Can
+                        HEPA Air Purifiers Capture the Coronavirus?
+                        en The New York Times</a>
+                    </p>
+                    <p>
+                      Los filtros HEPA bloquean al menos un 99,97 % de partículas de 0,3
+                      μm y son generalmente más eficaces para partículas que son más grandes.
+                    </p>
+                    <% } else { %>
                       <p>
-                        <%= JSON.stringify(Math.log10) %>
+                        Si deseas utilizarlo para eliminar SARS-CoV-2, al no ser un filtro de tipo HEPA estándar debes
+                        asegurarte que cumple esa función. Esto no significa que no funcione, solo que no contamos
+                        con las pruebas independientes que se han realizado con filtros HEPA. Ver: <a
+                          class="text-blue-600 underline"
+                          href="https://www.nytimes.com/wirecutter/blog/can-hepa-air-purifiers-capture-coronavirus/">Can
+                          HEPA Air Purifiers Capture the Coronavirus?
+                          en The New York Times</a>
                       </p>
+                      <% } %>
+
+                        <h2 class="text-xl py-2">
+                          Ruido
+                        </h2>
+
+                        <p>
+                          El nivel de ruido a la potencia máxima de este purificador es
+                          <% if (db===99) { %>
+                            desconocido.
+                            <% } else { %>
+                              de <%= db %> db.
+                                <% } %>
+                        </p>
+                        <p>
+                          Si vamos a utilizar el dispositivo en un dormitorio es deseable que tenga un modo nocturno con
+                          un
+                          nivel de ruido muy bajo.
+                          Pero si queremos utilizar el purificador en un aula escolar para evitar infecciones, daremos
+                          prioridad a que su modo de máxima potencia no sea ruidoso, ya
+                          que es el modo más eficaz.
+                        </p>
+                        <p>
+                          Un profesor proyectando la voz suele estar sobre los 65 db, si nuestro purificador pasa de 55
+                          db
+                          entonces
+                          tendrá que levantar la voz para asegurar un ratio de señal / ruido suficiente.
+                        </p>
+                        <p>
+                        <table>
+                          <tr>
+                            <th></th>
+                            <th class="text-left py-1 px-2">Nivel dB</th>
+                            <th class="text-left py-1 px-2">Ejemplo</th>
+                          </tr>
+                          <tr>
+                            <td class="pr-4">
+                              <% if (db < 50) { %>
+                                <%= name %> ▸
+                                  <% } %>
+                            </td>
+                            <td class="py-1 px-2 bg-green-300">30</td>
+                            <td class="py-1 px-2 bg-green-300">Biblioteca</td>
+                          </tr>
+                          <tr>
+                            <td class="pr-4">
+                              <% if (db>= 50 && db <55) { %>
+                                  <%= name %> ▸
+                                    <% } %>
+                            </td>
+                            <td class="py-1 px-2 bg-green-200">50</td>
+                            <td class="py-1 px-2 bg-green-200">Oficina silenciosa</td>
+                          </tr>
+                          <tr>
+                            <td class="pr-4">
+                              <% if (db>= 55 && db <60) { %>
+                                  <%= name %> ▸
+                                    <% } %>
+                            </td>
+                            <td class="py-1 px-2 bg-yellow-100">55-60</td>
+                            <td class="py-1 px-2 bg-yellow-100">Conversación normal</td>
+                          </tr>
+                          <tr>
+                            <td class="pr-4">
+                              <% if (db>= 60 && db < 70) { %>
+                                  <%= name %> ▸
+                                    <% } %>
+                            </td>
+                            <td class="py-1 px-2 bg-yellow-200">65</td>
+                            <td class="py-1 px-2 bg-yellow-200">Profesor proyectando la voz</td>
+                          </tr>
+                          <tr>
+                            <td class="pr-4">
+                              <% if (db>= 70 && db < 99) { %>
+                                  <%= name %> ▸
+                                    <% } %>
+                            </td>
+                            <td class="py-1 px-2 bg-yellow-300">70</td>
+                            <td class="py-1 px-2 bg-yellow-300">Restaurante ruidoso</td>
+                          </tr>
+                        </table>
+                        </p>
+
+                        <% if (db < 99 && defaultNumDevices> 1) { %>
+                          <p class="not-capable">
+                            El ruido total que producirían <span class="numDevices">
+                              <%= defaultNumDevices%>
+                            </span> dispositivos <%=name%> funcionando a la
+                              vez
+                              sería de <span class="accNoise">
+                                <%= defaultAccNoise %>
+                              </span> dB.
+                          </p>
+                          <% } %>
 
 
-                      <p class="text-xs text-gray-600">
-                        * Los valores indicados en la lista son proporcionados por el
-                        fabricante. ** En calidad de Afiliado de Amazon, obtengo ingresos por
-                        las compras adscritas que cumplen los requisitos aplicables
-                      </p>
+                            <p class="text-xs text-gray-600">
+                              * Los valores indicados en la lista son proporcionados por el
+                              fabricante. ** En calidad de Afiliado de Amazon, obtengo ingresos por
+                              las compras adscritas que cumplen los requisitos aplicables
+                            </p>
       </div>
 
       <!-- <script>

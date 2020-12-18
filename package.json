@@ -41,7 +41,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup --watch -c",
+    "dev": "yarn dev:products & rollup --watch -c",
     "start": "sirv public --host",
     "dev:products": "chokidar ./product-template.html -c \"node generate-products.js\"",
     "prebuild": "node generate-products.js"
