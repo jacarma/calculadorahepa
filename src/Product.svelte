@@ -63,7 +63,7 @@
               class="px-4 py-2 bg-yellow-500 rounded text-center
               hover:bg-yellow-400"
               target="_blank"
-              href="https://www.amazon.es/gp/product/{product.ASIN}/ref=as_li_tl?ie=UTF8&camp=3638&creative=24630&creativeASIN=B08155YBQH&linkCode=as2&tag=hepa07-21&linkId=c058ecb116876da7f44482426d4cfd88">
+              href="https://www.amazon.es/gp/product/{product.ASIN}/ref=as_li_tl?ie=UTF8&camp=3638&creative=24630&creativeASIN=B08155YBQH&linkCode=as2&tag=hepa04-21&linkId=c058ecb116876da7f44482426d4cfd88">
               Comprar
               <br />
               en Amazon
