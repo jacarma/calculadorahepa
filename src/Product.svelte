@@ -21,7 +21,10 @@
     class="flex bg-white border-b-2 py-2 md:py-0 md:border-b-0 md:shadow
     md:rounded-lg overflow-hidden"
     on:click={() => {
-      window.gtag('event', 'view-item', product);
+      window.gtag('event', 'view-item', {
+        ...product,
+        event_label: product.name
+      });
     }}>
     <div class="pt-4 pl-4">
       <ProductIframe name={product.name} ASIN={product.ASIN} />

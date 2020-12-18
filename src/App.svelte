@@ -39,7 +39,7 @@
         window.history.replaceState({}, "", "?" + p.toString());
       }
     }
-    gtag("event", "calculate", { w, l, h, vent });
+    gtag("event", "calculate", { w, l, h, vent, event_label: p.toString() });
   }
 
   function size() {
