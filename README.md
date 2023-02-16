@@ -1,6 +1,6 @@
 # Calculadora HEPA
 
-[calculadorahepa.com](https://www.calculadorahepa.com/)
+[https://calculadorahepa.netlify.app/](https://calculadorahepa.netlify.app/)
 
 The CADR calculator that helps you to choose the right air purifier.
 
